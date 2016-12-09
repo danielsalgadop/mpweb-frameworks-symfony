@@ -23,3 +23,4 @@ request_querystring:
 request_post:
   path: /post/
   defaults: { _controller: AppBundle:Default:requestPost }
+  methods: [POST]
