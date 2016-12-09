@@ -13,19 +13,8 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
         return $this->render('default/index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-    }
-
-    /**
-     * @Route("/{param}/", name="constraint", requirements={"param": "\d+"})
-     */
-    public function paramConstraintAction(string $param, Request $request)
-    {
-        return $this->render('default/index.html.twig', [
-            'base_dir' => "constraint, value: $param",
         ]);
     }
 
@@ -36,6 +25,16 @@ class DefaultController extends Controller
     {
         return $this->render('default/index.html.twig', [
             'base_dir' => $param,
+        ]);
+    }
+
+    /**
+     * @Route("/{param}/", name="constraint", requirements={"param": "\d+"})
+     */
+    public function paramConstraintAction(string $param, Request $request)
+    {
+        return $this->render('default/index.html.twig', [
+            'base_dir' => "constraint, value: $param",
         ]);
     }
 
