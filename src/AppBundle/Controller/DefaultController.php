@@ -18,4 +18,25 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/{param}/", name="constraint", requirements={"param": "\d+"})
+     */
+    public function paramConstraintAction(string $param, Request $request)
+    {
+        return $this->render('default/index.html.twig', [
+            'base_dir' => "constraint, value: $param",
+        ]);
+    }
+
+    /**
+     * @Route("/{param}/", name="param_homepage")
+     */
+    public function paramAction(string $param, Request $request)
+    {
+        return $this->render('default/index.html.twig', [
+            'base_dir' => $param,
+        ]);
+    }
+
 }
