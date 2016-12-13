@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{block name=title}Welcome!{/block}</title>
+        {block name=stylesheets}{/block}
+    </head>
+    <body>
+        {block name=body}{/block}
+        {block name=javascripts}{/block}
+    </body>
+</html>

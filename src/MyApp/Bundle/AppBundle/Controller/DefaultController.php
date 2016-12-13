@@ -19,6 +19,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    public function smartyIndexAction(Request $request)
+    {
+        return $this->render('default/index.html.smarty');
+    }
+
     /**
      * @Route("/{param}/", name="param_homepage")
      */
