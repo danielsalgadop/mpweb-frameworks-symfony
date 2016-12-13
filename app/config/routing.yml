@@ -25,10 +25,12 @@ request_post:
   defaults: { _controller: AppBundle:Default:requestPost }
   methods: [POST]
 
-calculator_add:
-  path: /add/{param1}/{param2}/
-  defaults: { _controller: AppBundle:Calculator:add }
+calculator_index:
+  path: /calculator/
+  defaults: { _controller: AppBundle:Calculator:index }
   methods: [GET]
-  requirements:
-    param1: '\d+'
-    param2: '\d+'
+
+calculator_add:
+  path: /calculator/add/
+  defaults: { _controller: AppBundle:Calculator:add }
+  methods: [POST]
