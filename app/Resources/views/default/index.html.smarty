@@ -1,4 +1,0 @@
-{extends 'file:base.html.smarty'}
-
-{block name=title}Welcome to the SmartyBundle{/block}
-{block name=body}Welcome to the SmartyBundle{/block}

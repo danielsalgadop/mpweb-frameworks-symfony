@@ -6,39 +6,17 @@ homepage:
   path: /
   defaults: { _controller: AppBundle:Default:index }
 
-smarty_homepage:
-  path: /smarty/
-  defaults: { _controller: AppBundle:Default:smartyIndex }
-
-request_querystring:
-  path: /querystring/
-  defaults: { _controller: AppBundle:Default:requestQuerystring }
-
-request_post:
-  path: /post/
-  defaults: { _controller: AppBundle:Default:requestPost }
+product_create:
+  path: /product/
+  defaults: { _controller: AppBundle:CreateProduct:execute }
   methods: [POST]
 
-calculator_index:
-  path: /calculator/
-  defaults: { _controller: AppBundle:Calculator:index }
+product_delete:
+  path: /product/{id}/
+  defaults: { _controller: AppBundle:DeleteProduct:execute }
+  methods: [DELETE]
+
+product_list:
+  path: /product/
+  defaults: { _controller: AppBundle:ListProducts:execute }
   methods: [GET]
-
-calculator_add:
-  path: /calculator/add/
-  defaults: { _controller: AppBundle:Calculator:add }
-  methods: [POST]
-
-xml:
-  path: /xml/
-  defaults: { _controller: AppBundle:Xml:index }
-
-constraint:
-  path: /{param}/
-  defaults: { _controller: AppBundle:Default:paramConstraint }
-  requirements:
-    param: '\d+'
-
-param_homepage:
-  path: /{param}/
-  defaults: { _controller: AppBundle:Default:param }

@@ -2,9 +2,3 @@
 # http://symfony.com/doc/current/service_container.html
 parameters:
 #    parameter_name: value
-
-services:
-  my.twig.extension:
-    class: MyApp\Bundle\AppBundle\Extensions\Twig\ClickMe
-    tags:
-      - { name: twig.extension }
