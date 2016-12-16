@@ -16,6 +16,11 @@ product_delete:
   defaults: { _controller: AppBundle:DeleteProduct:execute }
   methods: [DELETE]
 
+product_update:
+  path: /product/{id}/
+  defaults: { _controller: AppBundle:UpdateProduct:execute }
+  methods: [PUT]
+
 product_list:
   path: /product/
   defaults: { _controller: AppBundle:ListProducts:execute }

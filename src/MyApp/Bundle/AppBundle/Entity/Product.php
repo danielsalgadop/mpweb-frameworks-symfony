@@ -32,6 +32,14 @@ class Product
      */
     private $description;
 
+
+    public function __construct(string $name, float $price, string $description)
+    {
+        $this->name = $name;
+        $this->price = $price;
+        $this->description = $description;
+    }
+
     /**
      * @return mixed
      */
@@ -49,11 +57,28 @@ class Product
     }
 
     /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+    }
+
+    /**
      * @return mixed
      */
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
     }
 
     /**
@@ -63,4 +88,13 @@ class Product
     {
         return $this->description;
     }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
 }
