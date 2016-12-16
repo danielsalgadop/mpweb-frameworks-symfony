@@ -1,19 +1,18 @@
 <?php
 
-namespace MyApp\Bundle\AppBundle\Controller;
-
+namespace MyApp\Bundle\ProductBundle\Product\Controller;
 
 use Doctrine\ORM\Query;
-use MyApp\Bundle\AppBundle\Entity\Product;
+use MyApp\Component\Product\Domain\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ListProductsController extends Controller
 {
 
-    public function executeAction()
+    public function execute()
     {
-        $products = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Product')->findAll(Query::HYDRATE_ARRAY);
+        $products = $this->getDoctrine()->getRepository('\MyApp\Component\Product\Domain\Product')->findAll(Query::HYDRATE_ARRAY);
 
         $productsAsArray = array_map(function (Product $p) {
             return $this->productToArray($p);

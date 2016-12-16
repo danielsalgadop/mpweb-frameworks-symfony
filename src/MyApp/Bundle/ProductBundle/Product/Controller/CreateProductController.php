@@ -1,9 +1,8 @@
 <?php
 
-namespace MyApp\Bundle\AppBundle\Controller;
+namespace MyApp\Bundle\ProductBundle\Product\Controller;
 
-
-use MyApp\Bundle\AppBundle\Entity\Product;
+use MyApp\Component\Product\Domain\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateProductController extends Controller
 {
 
-    public function executeAction(Request $request)
+    public function execute(Request $request)
     {
 
         $json = json_decode($request->getContent(), true);
@@ -21,7 +20,7 @@ class CreateProductController extends Controller
         $description = $json['description'];
         $ownerId = $json['ownerId'];
 
-        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findOneBy(['id' => $ownerId]);
+        $owner = $this->getDoctrine()->getRepository('\MyApp\Component\Product\Domain\Owner')->findOneBy(['id' => $ownerId]);
 
         $product = new Product((string)$name, (float)$price, (string)$description, $owner);
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace MyApp\Bundle\AppBundle\Controller;
+namespace MyApp\Bundle\ProductBundle\Owner\Controller;
 
-use MyApp\Bundle\AppBundle\Entity\Owner;
+use MyApp\Component\Product\Domain\Owner;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 class CreateOwnerController extends Controller
 {
 
-    public function executeAction(Request $request)
+    public function execute(Request $request)
     {
 
         $json = json_decode($request->getContent(), true);

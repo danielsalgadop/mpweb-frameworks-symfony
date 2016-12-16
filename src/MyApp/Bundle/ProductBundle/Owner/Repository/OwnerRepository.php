@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Bundle\AppBundle\Repository;
+namespace MyApp\Bundle\ProductBundle\Owner\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -11,7 +11,7 @@ class OwnerRepository extends EntityRepository
     {
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT o FROM \MyApp\Bundle\AppBundle\Entity\Owner o ORDER BY o.name ASC'
+                'SELECT o FROM \MyApp\Component\Product\Domain\Owner o ORDER BY o.name ASC'
             )
             ->getResult();
     }

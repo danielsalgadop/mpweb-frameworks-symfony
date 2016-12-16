@@ -1,11 +1,11 @@
 <?php
 
-namespace MyApp\Bundle\AppBundle\Entity;
+namespace MyApp\Component\Product\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="\MyApp\Bundle\AppBundle\Repository\OwnerRepository")
+ * @ORM\Entity(repositoryClass="\MyApp\Bundle\ProductBundle\Owner\Repository\OwnerRepository")
  * @ORM\Table(name="owner")
  */
 class Owner
