@@ -28,6 +28,8 @@ class ListProductsController extends Controller
             'id' => $product->getId(),
             'name' => $product->getName(),
             'price' => $product->getPrice(),
+            'description' => $product->getDescription(),
+            'ownerId' => $product->getOwner()->getId()
         ];
     }
 

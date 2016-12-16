@@ -14,17 +14,16 @@ class CreateProductController extends Controller
     public function executeAction(Request $request)
     {
 
-        var_dump($request->getContent());
-
         $json = json_decode($request->getContent(), true);
-
-        var_dump($json);
 
         $name = $json['name'];
         $price = $json['price'];
         $description = $json['description'];
+        $ownerId = $json['ownerId'];
 
-        $product = new Product((string)$name, (float)$price, (string)$description);
+        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findOneBy(['id' => $ownerId]);
+
+        $product = new Product((string)$name, (float)$price, (string)$description, $owner);
 
         $em = $this->getDoctrine()->getManager();
 

@@ -25,3 +25,13 @@ product_list:
   path: /product/
   defaults: { _controller: AppBundle:ListProducts:execute }
   methods: [GET]
+
+owner_create:
+  path: /owner/
+  defaults: { _controller: AppBundle:CreateOwner:execute }
+  methods: [POST]
+
+owner_list:
+  path: /owner/
+  defaults: { _controller: AppBundle:ListOwners:execute }
+  methods: [GET]
