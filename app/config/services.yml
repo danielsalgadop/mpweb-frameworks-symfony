@@ -2,3 +2,26 @@
 # http://symfony.com/doc/current/service_container.html
 parameters:
 #    parameter_name: value
+services:
+  app.product.usecase.newproduct:
+    class: MyApp\Component\Product\Application\UseCase\Newproduct\NewProductUseCase
+    arguments:
+      ownerRepository: '@app.product.repository.owner'
+      entityManager: '@doctrine.orm.entity_manager' # services are referenced with an @ symbol
+      emailService: '@app.service.email'
+
+  app.product.owner.metadata:
+      class: Doctrine\ORM\Mapping\ClassMetadata
+      factory_service: doctrine # this is an instance of Registry
+      factory_method: getRepository
+      arguments: [ MyApp\Component\Product\Domain\Owner ]
+
+  app.product.repository.owner:
+    class: MyApp\Bundle\ProductBundle\Owner\Repository\OwnerRepository
+    arguments:
+      em: '@doctrine.orm.entity_manager'
+      mapping: '@app.product.owner.metadata'
+
+  app.service.email:
+    class: MyApp\Bundle\ProductBundle\Service\EmailService
+    arguments: ['this argument is never used']

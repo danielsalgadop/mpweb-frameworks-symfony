@@ -20,14 +20,9 @@ class CreateProductController extends Controller
         $description = $json['description'];
         $ownerId = $json['ownerId'];
 
-        $owner = $this->getDoctrine()->getRepository('\MyApp\Component\Product\Domain\Owner')->findOneBy(['id' => $ownerId]);
+        $newProductUseCase = $this->get('app.product.usecase.newproduct');
 
-        $product = new Product((string)$name, (float)$price, (string)$description, $owner);
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($product);
-        $em->flush();
+        $newProductUseCase->execute($name, $price, $description, $ownerId);
 
         return new Response('', 201);
 
