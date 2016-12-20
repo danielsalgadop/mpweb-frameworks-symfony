@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use MyApp\Component\Product\Application\Service\EmailService;
 use MyApp\Component\Product\Domain\Product;
 use MyApp\Component\Product\Domain\Repository\OwnerRepository;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class NewProductUseCase
 {
@@ -14,13 +15,13 @@ class NewProductUseCase
 
     private $entityManager;
 
-    private $emailService;
+    private $dispatcher;
 
-    public function __construct(OwnerRepository $ownerRepository, EntityManager $entityManager, EmailService $emailService)
+    public function __construct(OwnerRepository $ownerRepository, EntityManager $entityManager, EventDispatcherInterface $dispatcher)
     {
         $this->ownerRepository = $ownerRepository;
         $this->entityManager = $entityManager;
-        $this->emailService = $emailService;
+        $this->dispatcher = $dispatcher;
     }
 
     public function execute(string $productName, float $productPrice, string $productDescription, int $productOwnerId)
@@ -33,7 +34,7 @@ class NewProductUseCase
         $this->entityManager->persist($product);
         $this->entityManager->flush();
 
-        $this->emailService->sendEmailTo($owner->getName(), "a random content");
+        $this->dispatcher->dispatch(ProductCreated::TOPIC, new ProductCreated($product));
 
     }
 

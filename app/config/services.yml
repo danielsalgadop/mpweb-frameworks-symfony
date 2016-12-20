@@ -8,7 +8,7 @@ services:
     arguments:
       ownerRepository: '@app.product.repository.owner'
       entityManager: '@doctrine.orm.entity_manager' # services are referenced with an @ symbol
-      emailService: '@app.service.email'
+      emailService: '@event_dispatcher'
 
   app.product.owner.metadata:
       class: Doctrine\ORM\Mapping\ClassMetadata
@@ -25,3 +25,5 @@ services:
   app.service.email:
     class: MyApp\Bundle\ProductBundle\Service\EmailService
     arguments: ['this argument is never used']
+    tags:
+      - { name: kernel.event_listener, event: product.created }
