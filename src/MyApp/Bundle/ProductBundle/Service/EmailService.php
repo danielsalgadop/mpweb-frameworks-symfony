@@ -20,6 +20,6 @@ class EmailService implements \MyApp\Component\Product\Application\Service\Email
 
     public function sendEmailTo(string $email, string $content)
     {
-        echo "An email to $email has been sent with content: $content;\n";
+        echo "An email to $email has been sent with content: $content<br>";
     }
 }
