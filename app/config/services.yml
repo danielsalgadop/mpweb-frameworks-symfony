@@ -33,3 +33,9 @@ services:
     decorates: app.service.email
     decoration_inner_name: old.app.service.email
     arguments: ['@old.app.service.email']
+
+  app.command.product.create:
+    class: MyApp\Bundle\ProductBundle\Command\CreateProductCommand
+    arguments: ['@app.product.usecase.newproduct']
+    tags:
+      - { name: console.command }
