@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{{ "welcome.products" | trans }}.
+
+{{ "welcome.products.count" | transchoice(products | length) }}.
+
+{% for product in products %}
+    <li>{{ product.name }}</li>
+{% endfor %}
+
+{% endblock %}
