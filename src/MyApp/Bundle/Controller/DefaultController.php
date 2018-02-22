@@ -15,7 +15,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'base_dir' => 'MyApp '. realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
 
@@ -25,7 +25,7 @@ class DefaultController extends Controller
     public function paramAction(string $param, Request $request)
     {
         return $this->render('default/index.html.twig', [
-            'base_dir' => $param,
+            'base_dir' => 'MyApp '. $param,
         ]);
     }
 
@@ -35,7 +35,7 @@ class DefaultController extends Controller
     public function paramConstraintAction(string $param, Request $request)
     {
         return $this->render('default/index.html.twig', [
-            'base_dir' => "constraint, value: $param",
+            'base_dir' => 'MyApp '. "constraint, value: $param",
         ]);
     }
 

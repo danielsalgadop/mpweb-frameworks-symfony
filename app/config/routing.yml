@@ -24,3 +24,12 @@ request_post:
   path: /post/
   defaults: { _controller: AppBundle:Default:requestPost }
   methods: [POST]
+
+request_querystring2:
+  path: /querystring2/
+  defaults: { _controller: MyApp:Bundle:Default:requestQuerystring }
+
+request_post2:
+  path: /post2/
+  defaults: { _controller: MyApp:Bundle:Default:requestPost }
+  methods: [POST]
