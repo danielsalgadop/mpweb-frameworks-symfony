@@ -34,8 +34,17 @@ calculator_add:
     param1: '-*\d+'
     param2: '-*\d+'
 
-# Post params (purely POST)
+# Post params All validations done in Controller
 calculator_substract:
   path: /substract/
   defaults: { _controller: AppBundle:Calculator:substract }
   methods: [POST]
+
+
+# 1 parameter via URI othre via querystring
+calculator_times:
+  path: /times/{param1}/
+  defaults: { _controller: AppBundle:Calculator:times }
+  methods: [GET]
+  requirements:
+    param1: '-*\d+'

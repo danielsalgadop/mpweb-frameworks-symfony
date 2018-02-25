@@ -31,13 +31,22 @@ class CalculatorController
         }
         return new Response(new HttpException(406,"parametros no validos"));
     }
+
     public function substractAction()
     {
-
         $param1 = $this->request->get('param1');
         $param2 = $this->request->get('param2');
         if($this->validator->areNumbers([$param1,$param2])){
             return new Response((int)$this->calc->substract($param1,$param2));
+        }
+        return new Response(new HttpException(406,"parametros no validos"));
+    }
+
+    public function timesAction($param1,$param2)
+    {
+        $param2 = $param2 = $this->request->query->get('param2');
+        if($this->validator->areNumbers([$param1,$param2])){
+            return new Response((int)$this->calc->times($param1,$param2));
         }
         return new Response(new HttpException(406,"parametros no validos"));
     }
