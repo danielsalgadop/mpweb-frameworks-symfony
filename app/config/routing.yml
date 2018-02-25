@@ -41,10 +41,15 @@ calculator_substract:
   methods: [POST]
 
 
-# 1 parameter via URI othre via querystring
+# param1via URI param2 via querystring
 calculator_times:
   path: /times/{param1}/
   defaults: { _controller: AppBundle:Calculator:times }
   methods: [GET]
   requirements:
     param1: '-*\d+'
+
+# using anotation routes
+calculator_divide:
+  resource: "@AppBundle/Controller/CalculatorController.php"
+  type: annotation

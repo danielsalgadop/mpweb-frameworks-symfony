@@ -9,6 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class CalculatorController
 {
@@ -44,9 +45,20 @@ class CalculatorController
 
     public function timesAction($param1,$param2)
     {
-        $param2 = $param2 = $this->request->query->get('param2');
+        $param2 = $this->request->query->get('param2');
         if($this->validator->areNumbers([$param1,$param2])){
             return new Response((int)$this->calc->times($param1,$param2));
+        }
+        return new Response(new HttpException(406,"parametros no validos"));
+    }
+
+    /**
+     * @Route("/divide/{param1}/{param2}/", name="calculator_divide", requirements={"param1" = "-*\d+", "param2" = "-*\d+"})
+     */
+    public function divideAction($param1,$param2)
+    {
+        if($this->validator->areNumbers(func_get_args())){
+            return new Response((int)$this->calc->divide($param1,$param2));
         }
         return new Response(new HttpException(406,"parametros no validos"));
     }
