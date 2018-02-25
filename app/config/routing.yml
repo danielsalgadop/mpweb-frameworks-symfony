@@ -53,3 +53,10 @@ calculator_times:
 calculator_divide:
   resource: "@AppBundle/Controller/CalculatorController.php"
   type: annotation
+
+# if any of above works, this will
+cath-all:
+  path: /{req}
+  defaults: { _controller: 'AppBundle:Calculator:error' }
+  requirements:
+      req: ".+"

@@ -78,4 +78,7 @@ class CalculatorController extends Controller
             'message' => self::ERROR_INVALID_PARAMS,
         ]);
     }
+    public function errorAction(){
+        return $this->invalidParams();
+    }
 }
