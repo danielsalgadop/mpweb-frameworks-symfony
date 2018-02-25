@@ -13,6 +13,9 @@ class Validator
      */
     public function areNumbers(array $arr_param){
         foreach ($arr_param as $value) {
+            if($value == 0) {
+                continue;
+            }
             if (! filter_var($value, FILTER_VALIDATE_INT)) {
                 return false;
             }
