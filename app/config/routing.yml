@@ -34,7 +34,7 @@ calculator_add:
     param1: '-*\d+'
     param2: '-*\d+'
 
-# Post params
+# Post params (purely POST)
 calculator_substract:
   path: /substract/
   defaults: { _controller: AppBundle:Calculator:substract }
