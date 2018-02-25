@@ -1,7 +1,7 @@
 <?php
 
 namespace MyApp\Component\Calculator;
-
+// use MyApp\Component\Calculator\Validator;
 class CalculatorOriginal
 {
 
@@ -21,6 +21,13 @@ class Calculator
         $this->p1 = $p1;
         $this->p2 = $p2;
     }*/
+
+    var $validator = null;
+    function __construct() {
+        // $this->validator = new Validator;
+    }
+
+
     function add(int $v1, int $v2): int {
         return $v1 + $v2;
     }
