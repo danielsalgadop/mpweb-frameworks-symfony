@@ -7,11 +7,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 class CalculatorController
 {
-
-    public function addAction($param1, $param2)
+    var $calc = null;
+    # public function __construct($param1=0,$param2=0)  # asi no llegan los parametros. Debe ser que symfony instancia esto sin los valores que llegan en la request
+    public function __construct()
     {
-        $calculator = new Calculator();
-        return new Response((int)$calculator->add($param1, (int)$param2));
+        $this->calc = new Calculator();
+    }
+
+    public function addAction($param1,$param2)
+    {
+        #$calculator = new Calculator($param1, $param2);
+        return new Response((int)$this->calc->add($param1,$param2));
     }
 
 }
