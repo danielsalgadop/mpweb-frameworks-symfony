@@ -54,6 +54,15 @@ calculator_divide:
   resource: "@AppBundle/Controller/CalculatorController.php"
   type: annotation
 
+
+
+smarty:
+  path: /smarty/
+  defaults: { _controller: AppBundle:Calculator:smarty }
+
+
+
+
 # if any of above works, this will
 cath-all:
   path: /{req}

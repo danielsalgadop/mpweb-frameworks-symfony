@@ -82,4 +82,7 @@ class CalculatorController extends Controller
     public function errorAction(){
         return $this->invalidParams();
     }
+
+    public function smartyAction(){
+        return $this->render('default/example.html.smarty');}
 }
