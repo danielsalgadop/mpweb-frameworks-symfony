@@ -7,19 +7,30 @@ use Doctrine\ORM\Query;
 use MyApp\Bundle\AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 // use Doctrine\ORM\EntityManagerInterface;
 
 
 class CreateProductController extends Controller
 {
-    public function executeAction($id)
+    public function executeAction()
     {
+        $request = Request::createFromGlobals();
+        $name = $request->request->get('name');
+        $price = $request->request->get('price');
+        $description = $request->request->get('description');
+
+        // file_put_contents("/tmp/filelogs.log",print_r(date("Y-m-d_h:i:sa").__FILE__." ".__METHOD__." ".__LINE__." [$name]\n",true),FILE_APPEND);
+        // file_put_contents("/tmp/filelogs.log",var_export($request,true),FILE_APPEND);
+        // return new JsonResponse(['status','name '.$name]);
+
         $entity_manager  = $this->getDoctrine()->getManager();
         $product = new Product();
         // $product->setName = "name hardcoded";
-        $product->setName("name hardcoded");
-        $product->setDescription("description hardcoded");
-        $product->setPrice(484);
+
+        $product->setName($name);
+        $product->setDescription($description);
+        $product->setPrice($price);
 
         try {
 
