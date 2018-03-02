@@ -22,7 +22,7 @@ product_update:
   methods: [POST]
 
 
-product_list:
+product_list_1:
   path: /product/{id}/
   defaults: { _controller: AppBundle:ListProduct:execute }
   methods: [GET]
