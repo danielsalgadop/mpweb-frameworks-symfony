@@ -13,19 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UpdateProductController extends Controller
 {
-    public function executeAction()
+    public function executeAction($id)
     {
-        return new JsonResponse(['a','en update']);
+        // return new JsonResponse(['a','en update '.$id]);
              $product = $this->getDoctrine()
                   ->getRepository(Product::class)
                   ->findOneById($id);
 
 
-             $entity_manager  = $this->getDoctrine()->getManager();
 
         if (!$product) {
              return new JsonResponse(['status','error','message','product not found']);
          }
+             $entity_manager  = $this->getDoctrine()->getManager();
+
+             //
 
           $request = Request::createFromGlobals();
           $name = $request->request->get('name');
@@ -33,9 +35,10 @@ class UpdateProductController extends Controller
           $description = $request->request->get('description');
 
 
-             $entity_manager->remove($product);
+          $product->setDescription($description);
+             // $entity_manager->remove($product);
              $entity_manager->flush();
-             return new JsonResponse(['dani','crack']);
+             return new JsonResponse(['dani','updated']);
     }
 
 }
