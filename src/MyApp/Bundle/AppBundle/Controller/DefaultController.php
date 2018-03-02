@@ -47,4 +47,19 @@ class DefaultController extends Controller
         return new Response($request->request->get('id'));
     }
 
+    // public function xmlAction(Request $request) {
+    public function xmlAction(string $param) {
+        // return new Response('en xml ['. $request->query->get('algo').']');
+        $xml = '<?xml version="1.0"?>
+<ejemplo>
+      <Nombre>Gambardella, Matthew</Nombre>
+      <genre>Computer</genre>
+      <altura>'.$param.'</altura>
+</ejemplo>';
+        // $xml .= '<mynode><content>Hello</content></mynode>';
+
+        $response = new Response($xml);
+        $response->headers->set('Content-Type', 'xml');
+        return $response;
+    }
 }

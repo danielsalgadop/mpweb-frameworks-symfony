@@ -60,6 +60,10 @@ smarty:
   path: /smarty/
   defaults: { _controller: AppBundle:Calculator:smarty }
 
+xml:
+  path: /xml/{param}
+  defaults: { _controller: AppBundle:Default:xml }
+
 
 
 
