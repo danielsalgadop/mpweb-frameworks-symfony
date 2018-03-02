@@ -21,6 +21,13 @@ product_update:
   defaults: { _controller: AppBundle:UpdateProduct:execute }
   methods: [POST]
 
+
+product_list:
+  path: /product/{id}/
+  defaults: { _controller: AppBundle:ListProduct:execute }
+  methods: [GET]
+
+
 product_list:
   path: /product/
   defaults: { _controller: AppBundle:ListProducts:execute }
