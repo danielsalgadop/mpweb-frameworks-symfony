@@ -3,39 +3,40 @@
 namespace MyApp\Bundle\AppBundle\Controller;
 
 
-use Doctrine\ORM\Query;
 use MyApp\Bundle\AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateProductController extends Controller
 {
-    public function executeAction()
+
+    public function executeAction(Request $request)
     {
-        $request = Request::createFromGlobals();
-        $name = $request->request->get('name');
-        $price = $request->request->get('price');
-        $description = $request->request->get('description');
 
-        $entity_manager  = $this->getDoctrine()->getManager();
-        $product = new Product();
+        var_dump($request->getContent());
 
-        $product->setName($name);
-        $product->setDescription($description);
-        $product->setPrice($price);
 
-        try {
+        $json = json_decode($request->getContent(), true);
+        var_dump($json);
 
-            $entity_manager->persist($product);
-            $entity_manager->flush();
-        } catch (Exception $e) {
-            return new JsonResponse(['status','error','message','Algo ha ido mal en persist']);
+        /*$name = $json['name'];
+        $price = $json['price'];
+        $description = $json['description'];
+*/
+        $name = 'name';
+        $price = 99;
+        $description = 'description';
 
-        }
 
-        return new JsonResponse(['en','createProduct']);
+        $product = new Product((string)$name, (float)$price, (string)$description);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($product);
+        $em->flush();
+
+        return new Response('', 201);
 
     }
 
