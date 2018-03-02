@@ -7,6 +7,7 @@ use MyApp\Bundle\AppBundle\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CreateProductController extends Controller
 {
@@ -29,7 +30,8 @@ class CreateProductController extends Controller
         $description = 'description';
 
 
-        $product = new Product((string)$name, (float)$price, (string)$description);
+        $product = new Product("name", 4334, "descripition en controller");
+        // $product = new Product((string)$name, (float)$price, (string)$description);
 
         $em = $this->getDoctrine()->getManager();
 
