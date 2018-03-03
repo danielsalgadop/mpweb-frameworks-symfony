@@ -3,7 +3,6 @@
 namespace MyApp\Bundle\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -17,25 +16,35 @@ class Owner
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    private $products;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
 
-    public function __construct(string $name, float $price, string $description)
-    {
-        $this->name = $name;
-        $this->products = new ArrayCollection();
-        /*
-        $this->price = $price;
-        $this->description = $description; */
-    }
     /**
-     * One Owner has many Products
+     * Many User Have Many Products * OJO se llam ManyToMany, pero con el unique se restringe a oneToMany
+     * @ManytoMany(targetEntity="Product")
+     * @JoinTable(name="owners_products",
+     *  joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id", unique=true}
+     */
+    private $products;
+
+
+    /**
+     * One Owner have Many Products
      * @OneToMany(targetEntity="Product", mappedBy="product")
      */
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+        $this->products = new new \Doctrine\Common\Collections\ArrayCollection();
+        /*
+        $this->price = $price;
+        $this->description = $description;
+        */
+    }
 
     /**
      * @return mixed
