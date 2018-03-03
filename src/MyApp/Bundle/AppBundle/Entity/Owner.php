@@ -1,6 +1,7 @@
 <?php
 
 namespace MyApp\Bundle\AppBundle\Entity;
+use MyApp\Bundle\AppBundle\Entity\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -22,24 +23,21 @@ class Owner
      */
     private $name;
 
+    // *  OJO se llam ManyToMany, pero con el unique se restringe a oneToMany
     /**
-     * Many User Have Many Products * OJO se llam ManyToMany, pero con el unique se restringe a oneToMany
+     * Many User Have Many Products
      * @ManytoMany(targetEntity="Product")
      * @JoinTable(name="owners_products",
-     *  joinColumns={@JoinColumn(name="user_id", referencedColumnName="id")},
-     *  inverseJoinColumns={@JoinColumn(name="user_id", referencedColumnName="id", unique=true}
+     *  joinColumns={@JoinColumn(name="owner_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@JoinColumn(name="product_id", referencedColumnName="id", unique=true)}
+     * )
      */
     private $products;
 
-
-    /**
-     * One Owner have Many Products
-     * @OneToMany(targetEntity="Product", mappedBy="product")
-     */
     public function __construct(string $name)
     {
         $this->name = $name;
-        $this->products = new new \Doctrine\Common\Collections\ArrayCollection();
+        $this->products = new \Doctrine\Common\Collections\ArrayCollection();
         /*
         $this->price = $price;
         $this->description = $description;
