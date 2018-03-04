@@ -1,7 +1,6 @@
 <?php
 
 namespace MyApp\Bundle\AppBundle\Entity;
-// use MyApp\Bundle\AppBundle\Entity\Owner;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -34,18 +33,16 @@ class Product
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Owner")
-     * @JoinColumn(name="owner_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Owner")
+     * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
      */
-    private $owners;
-
+    private $owner;
 
     public function __construct(string $name, float $price, string $description)
     {
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
-        $this->owners = new \Doctrine\Common\Collections\ArrayCollection;
     }
 
     /**
