@@ -25,3 +25,9 @@ product_list:
   path: /product/
   defaults: { _controller: AppBundle:ListProducts:execute }
   methods: [GET]
+
+owner_list:
+  path: /owners_list/
+  defaults: { _controller: AppBundle:ListOwners:execute }
+  methods: [GET]
+
