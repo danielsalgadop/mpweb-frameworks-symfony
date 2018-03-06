@@ -1,18 +1,18 @@
 <?php
 
 // src/AppBundle/Repository/ProductRepository.php
-namespace AppBundle\Repository;
+namespace MyApp\Bundle\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
 class OwnerRepository extends EntityRepository
 {
-    public function findAllOrderedByName()
+    public function findByAllOrderedByName()
     {
-        /* Sieddo un EntityRepository tienes accesible en $this el EntityManager */
+        /* Siendo un EntityRepository tienes accesible en $this el EntityManager */
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT o FROM AppBundle:Owner o ORDER BY p.name ASC'
+                'SELECT o FROM AppBundle:Owner o ORDER BY o.name ASC'
             )
             ->getResult();
     }

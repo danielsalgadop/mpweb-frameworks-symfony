@@ -13,7 +13,7 @@ class ListOwnersController extends Controller
 
     public function executeAction()
     {
-        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findAll();
+        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findByAllOrderedByName();
 
         $ownerAsArray = array_map(function (Owner $o) {
             return $this->productToArray($o);
