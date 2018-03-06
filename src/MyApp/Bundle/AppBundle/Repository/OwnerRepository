@@ -9,6 +9,7 @@ class OwnerRepository extends EntityRepository
 {
     public function findAllOrderedByName()
     {
+        /* Sieddo un EntityRepository tienes accesible en $this el EntityManager */
         return $this->getEntityManager()
             ->createQuery(
                 'SELECT o FROM AppBundle:Owner o ORDER BY p.name ASC'

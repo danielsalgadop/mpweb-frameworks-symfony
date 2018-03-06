@@ -13,7 +13,7 @@ class ListOwnersController extends Controller
 
     public function executeAction()
     {
-        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findAll(Query::HYDRATE_ARRAY);
+        $owner = $this->getDoctrine()->getRepository('\MyApp\Bundle\AppBundle\Entity\Owner')->findAll();
 
         $ownerAsArray = array_map(function (Owner $o) {
             return $this->productToArray($o);
@@ -22,10 +22,10 @@ class ListOwnersController extends Controller
         return new JsonResponse($ownerAsArray);
     }
 
-    private function productToArray(Product $product)
+    private function productToArray(Owner $owner)
     {
         return [
-            'name' => $product->getName(),
+            'name' => $owner->getName(),
         ];
     }
 
