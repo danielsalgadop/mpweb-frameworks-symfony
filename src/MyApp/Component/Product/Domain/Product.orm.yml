@@ -1,0 +1,46 @@
+MyApp\Component\Product\Domain\Product:
+    type: entity
+    table: product
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 100
+        price:
+            type: decimal
+            scale: 2
+        description:
+            type: text
+    cascade: persist
+    manyToOne:
+        owner:
+            targetEntity: Owner
+            inversedBy: products
+            joinColumn:
+                name: owner_id
+                referencedColumnName: id
+# /**
+#  * @ORM\Entity
+#  * @ORM\Table(name="product")
+#  */
+#  /**
+#   * @ORM\Column(type="integer")
+#   * @ORM\Id
+#   * @ORM\GeneratedValue(strategy="AUTO")
+#   */
+#   /**
+#    * @ORM\Column(type="string", length=100)
+#    */
+#    /**
+#     * @ORM\Column(type="decimal", scale=2)
+#     */
+#     /**
+#      * @ORM\Column(type="text")
+#      */
+#      /**
+#       * @ORM\ManyToOne(targetEntity="Owner", inversedBy="products", cascade={"persist"})
+#       * @ORM\JoinColumn(name="owner_id", referencedColumnName="id")
+#       */
