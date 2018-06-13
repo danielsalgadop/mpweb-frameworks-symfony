@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Component\Product\Domain\Repository;
+namespace MyApp\Domain\Repository;
 
 
 interface OwnerRepository

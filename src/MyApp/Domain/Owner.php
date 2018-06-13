@@ -1,6 +1,6 @@
 <?php
 
-namespace MyApp\Component\Product\Domain;
+namespace MyApp\Domain;
 
 class Owner
 {

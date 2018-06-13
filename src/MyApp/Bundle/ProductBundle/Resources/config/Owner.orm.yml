@@ -1,4 +1,4 @@
-MyApp\Component\Product\Domain\Owner:
+MyApp\Domain\Owner:
     type: entity
     table: owner
     id:

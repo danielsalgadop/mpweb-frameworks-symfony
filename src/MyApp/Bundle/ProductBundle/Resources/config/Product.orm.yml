@@ -1,4 +1,4 @@
-MyApp\Component\Product\Domain\Product:
+MyApp\Domain\Product:
     type: entity
     table: product
     id:
