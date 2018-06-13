@@ -1,0 +1,1 @@
+bin/console doctrine:database:drop --force && bin/console doctrine:database:create && bin/console doctrine:schema:create  && mysql -u vagrant -pvagrant < ~/dev/mpwar/frameworks/repos/mpweb-frameworks-symfony/bin/dani_fill_small_ddbb.sql

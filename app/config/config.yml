@@ -65,9 +65,17 @@ doctrine:
           Product:
             type: yml
             is_bundle: false
-            dir: %kernel.root_dir%/../src/MyApp/Component/Product/Domain/
+            dir: %kernel.root_dir%/../src/MyApp/Bundle/ProductBundle/Resources/config
             # dir: %kernel.root_dir%/../src/MyApp/Component/Product/Domain/Product.orm.yml
             prefix: MyApp\Component\Product\Domain
+          Owner:
+            type: yml
+            is_bundle: false
+            dir: %kernel.root_dir%/../src/MyApp/Bundle/ProductBundle/Resources/config
+            # dir: %kernel.root_dir%/../src/MyApp/Component/Product/Domain/Product.orm.yml
+            prefix: MyApp\Component\Product\Domain
+
+
 
 # Swiftmailer Configuration
 swiftmailer:
