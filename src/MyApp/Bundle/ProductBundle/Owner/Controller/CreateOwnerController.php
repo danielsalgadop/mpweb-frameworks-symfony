@@ -24,7 +24,9 @@ class CreateOwnerController extends Controller
         // $ownerRepostory = new OwnerRepository;
         $createOwnerCommandHandler = new CreateOwnerCommandHandler($entityManager);
         $createOwnerCommandHandler->handle($createOwnerCommand);
-        file_put_contents("/home/dsalgado/mylogs/filelogs.log",__METHOD__.' '.__LINE__."\n",FILE_APPEND);
+
+        $entityManager->flush();
+
         return new Response('', 201);
 
 

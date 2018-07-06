@@ -20,7 +20,6 @@ class CreateOwnerCommandHandler
 
         $owner = new Owner($command->getName());
         $this->entityManager->persist($owner);
-        $this->entityManager->flush();
 
 
         return true;
