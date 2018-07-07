@@ -12,7 +12,6 @@ class CreateProductController extends Controller
 
     public function execute(Request $request)
     {
-
         $json = json_decode($request->getContent(), true);
 
         $name = $json['name'];

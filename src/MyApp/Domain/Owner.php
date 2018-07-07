@@ -17,11 +17,12 @@ class Owner
     public function __construct(string $name)
     {
         $name = $this->cleanName($name);
-        $this->isValidName(filter_var($name, FILTER_SANITIZE_STRING));
+        $this->isValidNameOrError($name);
         $this->name = $name;
     }
 
-    public function isValidName($name): bool
+    // TODO reuse this behaviour  move to general Validator
+    public function isValidNameOrError($name): bool
     {
         if ($name == ""){
             throw new InvalidOwnerNameException('empty Owner Name');

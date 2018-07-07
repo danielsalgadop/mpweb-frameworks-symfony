@@ -3,6 +3,7 @@
 namespace MyApp\Domain;
 
 use Doctrine\ORM\Mapping as ORM;
+use \Exception;
 
 class Product
 {
@@ -18,82 +19,113 @@ class Product
 
     public function __construct(string $name, float $price, string $description, Owner $owner)
     {
+        // Sanitize
+        $name = $this->cleanName($name);
+        $price = $this->cleanPrice($price);
+        $description = $this->cleanDescription($description);
+
+        // Validate
+        $name = $this->isValidNameOrError($name);
+        $price = $this->isValidPriceOrError($price); // struggled more than desired with this!
+        $description = $this->isValidDescriptionOrError($description);
+
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
         $this->owner = $owner;
     }
 
-    /**
-     * @return mixed
-     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
     public function setName($name)
     {
         $this->name = $name;
 
     }
 
-    /**
-     * @return mixed
-     */
     public function getPrice()
     {
         return $this->price;
     }
 
-    /**
-     * @param mixed $price
-     */
     public function setPrice($price)
     {
         $this->price = $price;
     }
 
-    /**
-     * @return mixed
-     */
     public function getDescription()
     {
         return $this->description;
     }
 
-    /**
-     * @param mixed $description
-     */
     public function setDescription($description)
     {
         $this->description = $description;
     }
 
-    /**
-     * @return mixed
-     */
     public function getOwner()
     {
         return $this->owner;
     }
 
-    /**
-     * @param mixed $owner
-     */
     public function setOwner($owner)
     {
         $this->owner = $owner;
     }
+
+    // TODO reuse this behaviour move to general Validator
+    public function isValidNameOrError($name): bool
+    {
+
+        if ($name == ""){
+            throw new Exception('Invalid Product Name');
+        }
+        return true;
+    }
+    // TODO reuse this behaviour move to general Validator
+    public function isValidPriceOrError(float $price): bool
+    {
+        if (!is_float($price) || $price == 0 ){
+            throw new Exception('Invalid Product Price, cant be 0');
+        }
+        return true;
+    }
+    // TODO reuse this behaviour move to general Validator
+    public function isValidDescriptionOrError($description): bool
+    {
+        if ($description == ""){
+            throw new Exception('Invalid Product Description');
+        }
+        return true;
+    }
+
+    // TODO reuse this behaviour  (\s* ) move to general Validator
+    private function cleanName($name): string
+    {
+        $name = filter_var(trim($name), FILTER_SANITIZE_STRING);
+        return preg_replace("/\s+/", ' ', $name);
+    }
+    // TODO reuse this behaviour  (\s* ) move to general Validator
+    private function cleanPrice(float $price): float
+    {
+        $price = preg_replace("/\s+/", ' ', $price);
+        $price = filter_var(trim($price), FILTER_SANITIZE_NUMBER_FLOAT);
+        return $price;
+
+    }
+    // TODO reuse this behaviour  (\s* ) move to general Validator
+    private function cleanDescription($description): string
+    {
+        $description = filter_var(trim($description), FILTER_SANITIZE_STRING);
+        return preg_replace("/\s+/", ' ', $description);
+    }
+
 }

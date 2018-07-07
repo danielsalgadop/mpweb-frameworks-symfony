@@ -34,3 +34,9 @@ services:
         public: true
         arguments:
             - "@myapp.repository.product"
+    myapp.command.handler.create.product:
+        class: MyApp\Application\CommandHandler\Product\CreateProductCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.product"
+            - "@myapp.repository.owner"

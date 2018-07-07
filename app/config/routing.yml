@@ -4,7 +4,7 @@
 
 product_create:
   path: /product/
-  defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\CreateProductController::execute }
+  defaults: { _controller: ProductBundle:Product:create }
   methods: [POST]
 
 product_delete:
@@ -14,12 +14,11 @@ product_delete:
 
 product_update:
   path: /product/{id}/
-  defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\UpdateProductController::execute }
+  defaults: { _controller: ProductBundle:Product:update }
   methods: [PUT]
 
 product_list:
   path: /product/
-  # defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\ListProductsController::execute }
   defaults: { _controller: ProductBundle:Product:show }
   methods: [GET]
 
