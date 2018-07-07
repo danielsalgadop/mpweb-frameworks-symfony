@@ -40,3 +40,8 @@ services:
         arguments:
             - "@myapp.repository.product"
             - "@myapp.repository.owner"
+    myapp.command.handler.update.product:
+        class: MyApp\Application\CommandHandler\Product\UpdateProductCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.product"

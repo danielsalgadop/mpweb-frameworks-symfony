@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityRepository;
 use MyApp\Domain\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use MyApp\Domain\Product;
+use \Exception;
 
 class MySQLProductRepository implements ProductRepository
 {
@@ -23,6 +24,18 @@ class MySQLProductRepository implements ProductRepository
                 'SELECT p FROM \MyApp\Domain\Product p ORDER BY p.id ASC'
             )
             ->getResult();
+    }
+
+    public function findProductByIdOrError(int $product_id):Product
+    {
+        $product = $this->entityManager
+            ->getRepository('MyApp\Domain\Product')
+            ->findOneBy(['id' => $product_id]);
+        if ( $product === null) {
+            // TODO - move this to Domain and semantic Exception
+            throw new Exception("Unknown ProdcutID [".$product_id."]");
+        }
+        return $product;
     }
 
     public function persist(Product $product)

@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use MyApp\Application\Command\Product\CreateProductCommand;
+use MyApp\Application\Command\Product\UpdateProductCommand;
 
 use \Exception;
 
@@ -55,14 +56,27 @@ class ProductController extends Controller
 
         $json = json_decode($request->getContent(), true);
 
-        $product = $this->getDoctrine()->getRepository('\MyApp\Domain\Product')->findOneBy(['id' => $id]);
+        $updateProductCommand = new UpdateProductCommand((string)$json['name'],(float)$json['price'],(string)$json['description'] );
+        $updateProductCommandHandler = $this->get('myapp.command.handler.update.product');
 
-        $product->setName($json['name']);
-        $product->setPrice($json['price']);
-        $product->setDescription($json['description']);
+        try{
+            $updateProductCommandHandler->handle($updateProductCommand, $id);
+            $this->get('doctrine.orm.default_entity_manager')->flush();
+        } catch (Exception $e) {
+            return new JsonResponse(
+                ['error' => $e->getMessage()],
+                400
+            );
+        }
 
-        $em = $this->getDoctrine()->getManager();
-        $em->flush();
+        // $product = $this->getDoctrine()->getRepository('\MyApp\Domain\Product')->findOneBy(['id' => $id]);
+
+        // $product->setName($json['name']);
+        // $product->setPrice($json['price']);
+        // $product->setDescription($json['description']);
+
+        // $em = $this->getDoctrine()->getManager();
+        // $em->flush();
 
         return new JsonResponse(
             ['success' => 'Product Updated Correctly'],

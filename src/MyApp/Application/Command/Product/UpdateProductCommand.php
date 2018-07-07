@@ -12,7 +12,6 @@ class UpdateProductCommand
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;
-        $this->ownerId = $ownerId;
     }
 
     public function getName()
@@ -28,10 +27,5 @@ class UpdateProductCommand
     public function getDescription()
     {
         return $this->description;
-    }
-
-    public function getOwnerId()
-    {
-        return $this->ownerId;
     }
 }
