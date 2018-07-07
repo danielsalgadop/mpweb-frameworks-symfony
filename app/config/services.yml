@@ -11,15 +11,11 @@ services:
 
     myapp.repository.owner:
         class: MyApp\Bundle\ProductBundle\Owner\Repository\MySQLOwnerRepository
-        public: true
+        public: false
         arguments:
             - "@doctrine.orm.default_entity_manager"
-# services:
-
-
-
-#     app.owner.repository:
-#         class: MyApp\Bundle\ProductBundle\Owner\Repository\MySqlOwnerRepository
-#         public: false
-#         arguments:
-#             - "@doctrine.orm.default_entity_manager"
+    myapp.command.handler.create.user:
+        class: MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.owner"

@@ -9,7 +9,6 @@ use MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
 
-// use MyApp\Bundle\ProductBundle\Owner\Repository\OwnerRepository;
 use MyApp\Bundle\ProductBundle\Owner\Repository\MySQLOwnerRepository;
 
 class CreateOwnerController extends Controller
@@ -21,17 +20,11 @@ class CreateOwnerController extends Controller
         $json = json_decode($request->getContent(), true);
 
         $createOwnerCommand = new CreateOwnerCommand((string)$json['name']);
-        $entityManager = $this->getDoctrine()->getManager();
-
-
-        $ownerRepostory = $this->get('myapp.repository.owner');
-
-        $createOwnerCommandHandler = new CreateOwnerCommandHandler($ownerRepostory);
+        $createOwnerCommandHandler = $this->get('myapp.command.handler.create.user');
 
         try {
-            // $createOwnerCommandHandler = new CreateOwnerCommandHandler($ownerRepostory);
-            // $owner = $createOwnerCommandHandler->handle($createOwnerCommand);
             $createOwnerCommandHandler->handle($createOwnerCommand);
+            $this->get('doctrine.orm.default_entity_manager')->flush();
 
         } catch (InvalidOwnerNameException $e) {
             return new JsonResponse(
@@ -39,9 +32,6 @@ class CreateOwnerController extends Controller
                 400
             );
         }
-
-        $entityManager->flush();
-
         return new JsonResponse(
             ['success' => 'Owner Created Correctly'],
             200
