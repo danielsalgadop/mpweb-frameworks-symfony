@@ -59,4 +59,11 @@ class Owner
         $this->name = $name;
     }
 
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        ];
+    }
 }
