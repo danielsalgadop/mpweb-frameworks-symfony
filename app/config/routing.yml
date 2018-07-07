@@ -22,16 +22,6 @@ product_list:
   defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\ListProductsController::execute }
   methods: [GET]
 
-owner_create_old:
-  path: /owner_old/
-  defaults: { _controller: \MyApp\Bundle\ProductBundle\Owner\Controller\CreateOwnerController::execute }
-  methods: [POST]
-
-# owner_list_old:
-#   path: /owner_old/
-#   defaults: { _controller: \MyApp\Bundle\ProductBundle\Owner\Controller\ListOwnersController::execute }
-#   methods: [GET]
-
 owner_list:
   path: /owner/
   defaults: { _controller: ProductBundle:Owner:show }

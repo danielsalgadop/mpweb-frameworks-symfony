@@ -16,7 +16,8 @@ class OwnerController extends Controller
 
     public function showAction()
     {
-        $owners = $this->getDoctrine()->getRepository('\MyApp\Domain\Owner')->findAll(Query::HYDRATE_ARRAY);
+        $showOwnersCommandHandler = $this->get('myapp.command.handler.show.owners');
+        $owners = $showOwnersCommandHandler->handle();
 
         $ownersAsArray = array_map(function (Owner $o) {
              return $this->ownerToArray($o);
@@ -25,21 +26,13 @@ class OwnerController extends Controller
         return new JsonResponse($ownersAsArray);
     }
 
-    private function ownerToArray(Owner $owner)
-    {
-        return [
-            'id' => $owner->getId(),
-            'name' => $owner->getName()
-        ];
-    }
-
     public function createAction(Request $request): JsonResponse
     {
 
         $json = json_decode($request->getContent(), true);
 
         $createOwnerCommand = new CreateOwnerCommand((string)$json['name']);
-        $createOwnerCommandHandler = $this->get('myapp.command.handler.create.user');
+        $createOwnerCommandHandler = $this->get('myapp.command.handler.create.owner');
 
         try {
             $createOwnerCommandHandler->handle($createOwnerCommand);
@@ -57,6 +50,12 @@ class OwnerController extends Controller
         );
     }
 
-
+    private function ownerToArray(Owner $owner)
+    {
+        return [
+            'id' => $owner->getId(),
+            'name' => $owner->getName()
+        ];
+    }
 
 }

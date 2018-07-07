@@ -14,8 +14,8 @@ class ListOwnersCommandHandler
         $this->ownerRepository = $ownerRepository;
     }
 
-    public function handle($command)
+    public function handle(): array
     {
-        $arr_owners = $this->ownerRepository->findAllOrderedByName();
+        return $this->ownerRepository->findAllOrderedByName();
     }
 }

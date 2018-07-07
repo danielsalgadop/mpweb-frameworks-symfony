@@ -14,8 +14,13 @@ services:
         public: false
         arguments:
             - "@doctrine.orm.default_entity_manager"
-    myapp.command.handler.create.user:
+    myapp.command.handler.create.owner:
         class: MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.owner"
+    myapp.command.handler.show.owners:
+        class: MyApp\Application\CommandHandler\Owner\ListOwnersCommandHandler
         public: true
         arguments:
             - "@myapp.repository.owner"
