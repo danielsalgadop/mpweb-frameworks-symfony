@@ -1,20 +1,39 @@
 <?php
 
-namespace MyApp\Bundle\ProductBundle\Owner\Controller;
+namespace MyApp\Bundle\ProductBundle\Controller;
 
+use MyApp\Domain\Owner;
+use Doctrine\ORM\Query;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use MyApp\Application\Command\Owner\CreateOwnerCommand;
-use MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
-
+use MyApp\Application\Command\Owner\CreateOwnerCommand;
 use MyApp\Bundle\ProductBundle\Owner\Repository\MySQLOwnerRepository;
 
-class CreateOwnerController extends Controller
+class OwnerController extends Controller
 {
 
-    public function execute(Request $request): JsonResponse
+    public function showAction()
+    {
+        $owners = $this->getDoctrine()->getRepository('\MyApp\Domain\Owner')->findAll(Query::HYDRATE_ARRAY);
+
+        $ownersAsArray = array_map(function (Owner $o) {
+             return $this->ownerToArray($o);
+        }, $owners);
+
+        return new JsonResponse($ownersAsArray);
+    }
+
+    private function ownerToArray(Owner $owner)
+    {
+        return [
+            'id' => $owner->getId(),
+            'name' => $owner->getName()
+        ];
+    }
+
+    public function createAction(Request $request): JsonResponse
     {
 
         $json = json_decode($request->getContent(), true);
@@ -37,5 +56,7 @@ class CreateOwnerController extends Controller
             200
         );
     }
+
+
 
 }
