@@ -2,10 +2,11 @@
 
 namespace MyApp\Domain\Repository;
 
+use MyApp\Domain\Owner;
 
 interface OwnerRepository
 {
     public function findAllOrderedByName();
-    // public function save();
+    public function persist(Owner $owner);
 
 }

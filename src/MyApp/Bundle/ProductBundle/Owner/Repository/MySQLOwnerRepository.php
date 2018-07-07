@@ -27,6 +27,6 @@ class MySQLOwnerRepository implements OwnerRepository
 
     public function persist(Owner $owner)
     {
-        $this->entityManager->save();
+        $this->entityManager->persist($owner);
     }
 }
