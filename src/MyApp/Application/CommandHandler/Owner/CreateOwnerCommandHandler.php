@@ -2,16 +2,16 @@
 
 namespace MyApp\Application\CommandHandler\Owner;
 use MyApp\Domain\Owner;
-
+use MyApp\Domain\Repository\OwnerRepository;
 
 
 class CreateOwnerCommandHandler
 {
-    private $entityManager;
+    private $ownerRepository;
 
-    public function __construct($entityManager)
+    public function __construct(OwnerRepository $ownerRepository)
     {
-        $this->entityManager = $entityManager;
+        $this->ownerRepository = $ownerRepository;
     }
 
     public function handle($command)
@@ -19,7 +19,8 @@ class CreateOwnerCommandHandler
 
 
         $owner = new Owner($command->getName());
-        $this->entityManager->persist($owner);
+        $this->ownerRepository->persist($owner);
+        // file_put_contents("/home/dsalgado/mylogs/filelogs.log",var_export($persisted_owner,true),FILE_APPEND);
 
         return true;
         // DUDA Pablo, I was trying to return Id of recent created owner. While ->geName() works, getId() does not.
