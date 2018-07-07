@@ -23,7 +23,7 @@ class Owner
 
     public function isValidName($name): bool
     {
-        if (preg_match("/^\s*$/", $name)){
+        if ($name == ""){
             throw new InvalidOwnerNameException('empty Owner Name');
         }
         return true;

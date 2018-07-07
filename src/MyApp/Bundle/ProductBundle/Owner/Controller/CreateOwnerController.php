@@ -23,9 +23,13 @@ class CreateOwnerController extends Controller
         $createOwnerCommand = new CreateOwnerCommand((string)$json['name']);
         $entityManager = $this->getDoctrine()->getManager();
 
-        $ownerRepostory = new MySQLOwnerRepository($entityManager);
+
+        $ownerRepostory = $this->get('myapp.repository.owner');
+
+        $createOwnerCommandHandler = new CreateOwnerCommandHandler($ownerRepostory);
+
         try {
-            $createOwnerCommandHandler = new CreateOwnerCommandHandler($ownerRepostory);
+            // $createOwnerCommandHandler = new CreateOwnerCommandHandler($ownerRepostory);
             // $owner = $createOwnerCommandHandler->handle($createOwnerCommand);
             $createOwnerCommandHandler->handle($createOwnerCommand);
 
