@@ -20,7 +20,7 @@ class MySQLProductRepository implements ProductRepository
     {
         return $this->entityManager
             ->createQuery(
-                'SELECT o FROM \MyApp\Domain\Product o ORDER BY o.name ASC'
+                'SELECT p FROM \MyApp\Domain\Product p ORDER BY p.id ASC'
             )
             ->getResult();
     }

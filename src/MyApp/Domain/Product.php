@@ -20,14 +20,15 @@ class Product
     public function __construct(string $name, float $price, string $description, Owner $owner)
     {
         // Sanitize
+
         $name = $this->cleanName($name);
         $price = $this->cleanPrice($price);
         $description = $this->cleanDescription($description);
 
         // Validate
-        $name = $this->isValidNameOrError($name);
-        $price = $this->isValidPriceOrError($price); // struggled more than desired with this!
-        $description = $this->isValidDescriptionOrError($description);
+        $this->isValidNameOrError($name);
+        $this->isValidPriceOrError($price); // struggled more than desired with this!
+        $this->isValidDescriptionOrError($description);
 
         $this->name = $name;
         $this->price = $price;
