@@ -14,6 +14,11 @@ services:
         public: false
         arguments:
             - "@doctrine.orm.default_entity_manager"
+    myapp.repository.product:
+        class: MyApp\Bundle\ProductBundle\Product\Repository\MySQLProductRepository
+        public: false
+        arguments:
+            - "@doctrine.orm.default_entity_manager"
     myapp.command.handler.create.owner:
         class: MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler
         public: true
@@ -24,3 +29,8 @@ services:
         public: true
         arguments:
             - "@myapp.repository.owner"
+    myapp.command.handler.show.products:
+        class: MyApp\Application\CommandHandler\Product\ListProductsCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.product"

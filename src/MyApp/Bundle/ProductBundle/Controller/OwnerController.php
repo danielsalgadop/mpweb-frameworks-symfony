@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
 use MyApp\Application\Command\Owner\CreateOwnerCommand;
-use MyApp\Bundle\ProductBundle\Owner\Repository\MySQLOwnerRepository;
 
 class OwnerController extends Controller
 {

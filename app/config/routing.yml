@@ -19,7 +19,8 @@ product_update:
 
 product_list:
   path: /product/
-  defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\ListProductsController::execute }
+  # defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\ListProductsController::execute }
+  defaults: { _controller: ProductBundle:Product:show }
   methods: [GET]
 
 owner_list:
