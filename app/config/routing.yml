@@ -9,7 +9,7 @@ product_create:
 
 product_delete:
   path: /product/{id}/
-  defaults: { _controller: \MyApp\Bundle\ProductBundle\Product\Controller\DeleteProductController::execute }
+  defaults: { _controller: ProductBundle:Product:delete }
   methods: [DELETE]
 
 product_update:

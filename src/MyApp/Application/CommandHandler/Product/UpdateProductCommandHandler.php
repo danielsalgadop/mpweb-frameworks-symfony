@@ -3,7 +3,6 @@
 namespace MyApp\Application\CommandHandler\Product;
 use MyApp\Domain\Product;
 use MyApp\Domain\Repository\ProductRepository;
-use MyApp\Domain\Repository\OwnerRepository;
 
 
 class UpdateProductCommandHandler

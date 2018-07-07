@@ -45,3 +45,8 @@ services:
         public: true
         arguments:
             - "@myapp.repository.product"
+    myapp.command.handler.delete.product:
+        class: MyApp\Application\CommandHandler\Product\DeleteProductCommandHandler
+        public: true
+        arguments:
+            - "@myapp.repository.product"

@@ -68,20 +68,37 @@ class ProductController extends Controller
                 400
             );
         }
-
-        // $product = $this->getDoctrine()->getRepository('\MyApp\Domain\Product')->findOneBy(['id' => $id]);
-
-        // $product->setName($json['name']);
-        // $product->setPrice($json['price']);
-        // $product->setDescription($json['description']);
-
-        // $em = $this->getDoctrine()->getManager();
-        // $em->flush();
-
         return new JsonResponse(
             ['success' => 'Product Updated Correctly'],
             200
         );
+    }
+
+    public function deleteAction($id)
+    {
+
+        // $deleteProductCommand = new DeleteProductCommand($id);
+        $deleteProductCommandHandler = $this->get('myapp.command.handler.delete.product');
+        try{
+            $deleteProductCommandHandler->handle($id);
+
+        } catch(Exception $e) {
+            return new JsonResponse(
+                ['error' => $e->getMessage()],
+                400
+            );
+        }
+
+
+       //  $em = $this->getDoctrine()->getManager();
+       // $product = $em->getReference('\MyApp\Domain\Product', $id);
+       // $em->remove($product);
+       // $em->flush();
+
+       return new JsonResponse(
+           ['success' => 'Product Deleted Correctly'],
+           200
+       );
     }
 
     private function productToArray(Product $product)

@@ -38,6 +38,15 @@ class MySQLProductRepository implements ProductRepository
         return $product;
     }
 
+    public function remove(int $product_id)
+    {
+        // $em = $this->getDoctrine()->getManager();
+        $product = $this->entityManager->getReference('\MyApp\Domain\Product', $product_id);
+        $this->entityManager->remove($product);
+
+        // $this->entityManager->delete($product_id);
+    }
+
     public function persist(Product $product)
     {
         $this->entityManager->persist($product);
