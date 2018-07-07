@@ -21,8 +21,9 @@ class CreateOwnerCommandHandler
         $owner = new Owner($command->getName());
         $this->entityManager->persist($owner);
 
-
         return true;
-        return $owner->getId();
+        // DUDA Pablo, I was trying to return Id of recent created owner. While ->geName() works, getId() does not.
+        // return $owner->getId();  //
+        // return $owner->getName();
     }
 }

@@ -35,7 +35,7 @@ class CreateOwnerController extends Controller
 
         $entityManager->flush();
 
-        return new Response('', 201);
+        return new Response('Owner Created Correctly', 201);
 
 
     }
