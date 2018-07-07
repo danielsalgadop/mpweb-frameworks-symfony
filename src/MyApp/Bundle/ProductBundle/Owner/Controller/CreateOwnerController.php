@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Response;
 use MyApp\Application\Command\Owner\CreateOwnerCommand;
 use MyApp\Application\CommandHandler\Owner\CreateOwnerCommandHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
+
 // use MyApp\Bundle\ProductBundle\Owner\Repository\OwnerRepository;
 
 class CreateOwnerController extends Controller
@@ -22,8 +24,14 @@ class CreateOwnerController extends Controller
 
 
         // $ownerRepostory = new OwnerRepository;
-        $createOwnerCommandHandler = new CreateOwnerCommandHandler($entityManager);
-        $createOwnerCommandHandler->handle($createOwnerCommand);
+        try {
+            $createOwnerCommandHandler = new CreateOwnerCommandHandler($entityManager);
+            $createOwnerCommandHandler->handle($createOwnerCommand);
+
+        } catch (InvalidOwnerNameException $e) {
+            return new Response($e->getMessage(),400);
+        }
+
 
         $entityManager->flush();
 

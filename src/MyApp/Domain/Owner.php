@@ -1,6 +1,7 @@
 <?php
 
 namespace MyApp\Domain;
+use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
 
 class Owner
 {
@@ -15,7 +16,18 @@ class Owner
      */
     public function __construct($name)
     {
+        $name = filter_var($name, FILTER_SANITIZE_STRING);
+        $this->isValidName(filter_var($name, FILTER_SANITIZE_STRING));
         $this->name = $name;
+
+    }
+
+    public function isValidName($name): bool
+    {
+        if ($name == ""){
+            throw new InvalidOwnerNameException('empty Owner Name');
+        }
+        return true;
     }
 
     /**
