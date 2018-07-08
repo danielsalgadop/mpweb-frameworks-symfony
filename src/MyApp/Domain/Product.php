@@ -2,8 +2,9 @@
 
 namespace MyApp\Domain;
 
-use Doctrine\ORM\Mapping as ORM;
+// use Doctrine\ORM\Mapping as ORM;
 use \Exception;
+use  MyApp\Domain\Owner;
 
 class Product
 {

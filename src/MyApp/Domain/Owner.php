@@ -7,13 +7,8 @@ class Owner
 {
 
     private $id;
-
     private $name;
 
-    /**
-     * Owner constructor.
-     * @param $name
-     */
     public function __construct(string $name)
     {
         $name = $this->cleanName($name);
@@ -36,25 +31,18 @@ class Owner
         $name = filter_var(trim($name), FILTER_SANITIZE_STRING);
         return preg_replace("/\s+/", ' ', $name);
     }
-    /**
-     * @return mixed
-     */
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
+    // TODO - borrable?
     public function setName($name)
     {
         $this->name = $name;

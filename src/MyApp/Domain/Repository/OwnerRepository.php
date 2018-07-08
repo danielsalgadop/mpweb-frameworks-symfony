@@ -8,5 +8,4 @@ interface OwnerRepository
 {
     public function findAllOrderedByName();
     public function persist(Owner $owner);
-
 }
