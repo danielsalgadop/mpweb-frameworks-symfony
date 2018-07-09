@@ -1,11 +1,11 @@
 <?php
 
 namespace MyApp\Domain;
+
 use MyApp\Domain\Exception\Owner\InvalidOwnerNameException;
 
 class Owner
 {
-
     private $id;
     private $name;
 
@@ -19,7 +19,7 @@ class Owner
     // TODO reuse this behaviour  move to general Validator
     public function isValidNameOrError($name): bool
     {
-        if ($name == ""){
+        if ($name == "") {
             throw new InvalidOwnerNameException('empty Owner Name');
         }
         return true;

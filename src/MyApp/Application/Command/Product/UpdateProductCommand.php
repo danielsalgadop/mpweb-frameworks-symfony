@@ -8,7 +8,8 @@ class UpdateProductCommand
     private $price;
     private $description;
 
-    public function __construct(string $name, int $price, string $description) {
+    public function __construct(string $name, int $price, string $description)
+    {
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;

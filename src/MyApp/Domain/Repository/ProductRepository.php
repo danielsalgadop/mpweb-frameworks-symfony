@@ -8,5 +8,4 @@ interface ProductRepository
 {
     public function findAllOrderedByName();
     public function persist(Product $product);
-
 }

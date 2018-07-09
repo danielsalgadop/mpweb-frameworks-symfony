@@ -9,7 +9,8 @@ class CreateProductCommand
     private $description;
     private $ownerId;
 
-    public function __construct(string $name, int $price, string $description, int $ownerId) {
+    public function __construct(string $name, int $price, string $description, int $ownerId)
+    {
         $this->name = $name;
         $this->price = $price;
         $this->description = $description;

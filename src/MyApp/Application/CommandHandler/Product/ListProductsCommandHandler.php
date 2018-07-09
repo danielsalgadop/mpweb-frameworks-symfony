@@ -4,7 +4,6 @@ namespace MyApp\Application\CommandHandler\Product;
 
 use MyApp\Domain\Repository\ProductRepository;
 
-
 class ListProductsCommandHandler
 {
     private $productRepository;

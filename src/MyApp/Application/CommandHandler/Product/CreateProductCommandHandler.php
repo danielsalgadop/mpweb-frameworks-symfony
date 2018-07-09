@@ -1,10 +1,10 @@
 <?php
 
 namespace MyApp\Application\CommandHandler\Product;
+
 use MyApp\Domain\Product;
 use MyApp\Domain\Repository\ProductRepository;
 use MyApp\Domain\Repository\OwnerRepository;
-
 
 class CreateProductCommandHandler
 {
@@ -21,7 +21,7 @@ class CreateProductCommandHandler
     {
         $owner = $this->ownerRepository->findOwnerByIdOrError($command->getOwnerId());
 
-        $product = new Product($command->getName(), $command->getPrice(),$command->getDescription(), $owner);
+        $product = new Product($command->getName(), $command->getPrice(), $command->getDescription(), $owner);
         $this->productRepository->persist($product);
         return true;
     }

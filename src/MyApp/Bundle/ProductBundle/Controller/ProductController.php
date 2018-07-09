@@ -14,7 +14,6 @@ use \Exception;
 
 class ProductController extends Controller
 {
-
     public function showAction()
     {
         $showProductsCommandHandler = $this->get('myapp.command.handler.show.products');
@@ -29,10 +28,9 @@ class ProductController extends Controller
 
     public function createAction(Request $request): JsonResponse
     {
-
         $json = json_decode($request->getContent(), true);
 
-        $createProductCommand = new CreateProductCommand((string)$json['name'],(float)$json['price'],(string)$json['description'],(int)$json['ownerId'] );
+        $createProductCommand = new CreateProductCommand((string)$json['name'], (float)$json['price'], (string)$json['description'], (int)$json['ownerId']);
 
         $createProductCommandHandler = $this->get('myapp.command.handler.create.product');
 
@@ -53,13 +51,12 @@ class ProductController extends Controller
 
     public function updateAction(Request $request, $id)
     {
-
         $json = json_decode($request->getContent(), true);
 
-        $updateProductCommand = new UpdateProductCommand((string)$json['name'],(float)$json['price'],(string)$json['description'] );
+        $updateProductCommand = new UpdateProductCommand((string)$json['name'], (float)$json['price'], (string)$json['description']);
         $updateProductCommandHandler = $this->get('myapp.command.handler.update.product');
 
-        try{
+        try {
             $updateProductCommandHandler->handle($updateProductCommand, $id);
             $this->get('doctrine.orm.default_entity_manager')->flush();
         } catch (Exception $e) {
@@ -79,10 +76,9 @@ class ProductController extends Controller
 
         // $deleteProductCommand = new DeleteProductCommand($id);
         $deleteProductCommandHandler = $this->get('myapp.command.handler.delete.product');
-        try{
+        try {
             $deleteProductCommandHandler->handle($id);
-
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return new JsonResponse(
                 ['error' => $e->getMessage()],
                 400
@@ -90,12 +86,12 @@ class ProductController extends Controller
         }
 
 
-       //  $em = $this->getDoctrine()->getManager();
-       // $product = $em->getReference('\MyApp\Domain\Product', $id);
-       // $em->remove($product);
-       // $em->flush();
+        //  $em = $this->getDoctrine()->getManager();
+        // $product = $em->getReference('\MyApp\Domain\Product', $id);
+        // $em->remove($product);
+        // $em->flush();
 
-       return new JsonResponse(
+        return new JsonResponse(
            ['success' => 'Product Deleted Correctly'],
            200
        );
@@ -111,5 +107,4 @@ class ProductController extends Controller
             'ownerId' => $product->getOwner()->getId()
         ];
     }
-
 }

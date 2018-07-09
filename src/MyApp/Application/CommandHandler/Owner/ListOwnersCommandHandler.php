@@ -4,7 +4,6 @@ namespace MyApp\Application\CommandHandler\Owner;
 
 use MyApp\Domain\Repository\OwnerRepository;
 
-
 class ListOwnersCommandHandler
 {
     private $ownerRepository;

@@ -50,7 +50,6 @@ class Product
     public function setName($name)
     {
         $this->name = $name;
-
     }
 
     public function getPrice()
@@ -86,8 +85,7 @@ class Product
     // TODO reuse this behaviour move to general Validator
     public function isValidNameOrError($name): bool
     {
-
-        if ($name == ""){
+        if ($name == "") {
             throw new Exception('Invalid Product Name');
         }
         return true;
@@ -95,7 +93,7 @@ class Product
     // TODO reuse this behaviour move to general Validator
     public function isValidPriceOrError(float $price): bool
     {
-        if (!is_float($price) || $price == 0 ){
+        if (!is_float($price) || $price == 0) {
             throw new Exception('Invalid Product Price, cant be 0');
         }
         return true;
@@ -103,7 +101,7 @@ class Product
     // TODO reuse this behaviour move to general Validator
     public function isValidDescriptionOrError($description): bool
     {
-        if ($description == ""){
+        if ($description == "") {
             throw new Exception('Invalid Product Description');
         }
         return true;
@@ -121,7 +119,6 @@ class Product
         $price = preg_replace("/\s+/", ' ', $price);
         $price = filter_var(trim($price), FILTER_SANITIZE_NUMBER_FLOAT);
         return $price;
-
     }
     // TODO reuse this behaviour  (\s* ) move to general Validator
     private function cleanDescription($description): string
@@ -129,5 +126,4 @@ class Product
         $description = filter_var(trim($description), FILTER_SANITIZE_STRING);
         return preg_replace("/\s+/", ' ', $description);
     }
-
 }

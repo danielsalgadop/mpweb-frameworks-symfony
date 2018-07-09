@@ -1,9 +1,9 @@
 <?php
 
 namespace MyApp\Application\CommandHandler\Owner;
+
 use MyApp\Domain\Owner;
 use MyApp\Domain\Repository\OwnerRepository;
-
 
 class CreateOwnerCommandHandler
 {

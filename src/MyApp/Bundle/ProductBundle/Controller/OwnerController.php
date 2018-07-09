@@ -12,14 +12,13 @@ use MyApp\Application\Command\Owner\CreateOwnerCommand;
 
 class OwnerController extends Controller
 {
-
     public function showAction()
     {
         $showOwnersCommandHandler = $this->get('myapp.command.handler.show.owners');
         $owners = $showOwnersCommandHandler->handle();
 
         $ownersAsArray = array_map(function (Owner $o) {
-             return $this->ownerToArray($o);
+            return $this->ownerToArray($o);
         }, $owners);
 
         return new JsonResponse($ownersAsArray);
@@ -27,7 +26,6 @@ class OwnerController extends Controller
 
     public function createAction(Request $request): JsonResponse
     {
-
         $json = json_decode($request->getContent(), true);
 
         $createOwnerCommand = new CreateOwnerCommand((string)$json['name']);
@@ -36,7 +34,6 @@ class OwnerController extends Controller
         try {
             $createOwnerCommandHandler->handle($createOwnerCommand);
             $this->get('doctrine.orm.default_entity_manager')->flush();
-
         } catch (InvalidOwnerNameException $e) {
             return new JsonResponse(
                 ['error' => $e->getMessage()],
@@ -56,5 +53,4 @@ class OwnerController extends Controller
             'name' => $owner->getName()
         ];
     }
-
 }

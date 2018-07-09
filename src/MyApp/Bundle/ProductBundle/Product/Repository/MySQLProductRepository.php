@@ -31,7 +31,7 @@ class MySQLProductRepository implements ProductRepository
         $product = $this->entityManager
             ->getRepository('MyApp\Domain\Product')
             ->findOneBy(['id' => $product_id]);
-        if ( $product === null) {
+        if ($product === null) {
             // TODO - move this to Domain and semantic Exception
             throw new Exception("Unknown ProdcutID [".$product_id."]");
         }

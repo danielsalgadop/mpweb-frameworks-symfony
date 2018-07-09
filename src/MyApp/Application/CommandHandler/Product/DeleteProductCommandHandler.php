@@ -1,8 +1,8 @@
 <?php
 
 namespace MyApp\Application\CommandHandler\Product;
-use MyApp\Domain\Repository\ProductRepository;
 
+use MyApp\Domain\Repository\ProductRepository;
 
 class DeleteProductCommandHandler
 {
