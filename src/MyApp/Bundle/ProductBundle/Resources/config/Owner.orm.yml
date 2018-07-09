@@ -9,15 +9,3 @@ MyApp\Domain\Owner:
         name:
             type: string
             length: 100
-# /**
-#  * @ORM\Entity(repositoryClass="\MyApp\Bundle\ProductBundle\Owner\Repository\OwnerRepository")
-#  * @ORM\Table(name="owner")
-#  */
-#  /**
-#   * @ORM\Column(type="integer")
-#   * @ORM\Id
-#   * @ORM\GeneratedValue(strategy="AUTO")
-#   */
-#   /**
-#    * @ORM\Column(type="string", length=100)
-#    */
